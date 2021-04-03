@@ -5,18 +5,20 @@ export default function App() {
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    // Here we are mounting the function for the first time.
-    // the Timeout function will return the id which we will use in the unmounting phase to clear the call.
-    let id = setTimeout(() => {
-      console.log(`Mounting for the counter value ${counter}`);
+    // If we don't have an Id. we can make a local boolean variable and set it to true.
+    // Only do stuff id the value is true.
+    let currentRender = true;
+    setTimeout(() => {
+      currentRender
+        ? console.log(`Mounting final counter value ${counter}`)
+        : console.log("NOTHING");
     }, 3000);
     return () => {
-      // Here we are clearing the call for the mounting phase, Run after the mounting is done.
-      // Right now we don't have any ID so we are displaying the console log
+      // Setting the value to false which mean the component is unmounted.
+      currentRender = false;
       console.log(
-        `Un-Mounting for the counter value ${counter} and clearing the timeout call for id ${id}`
+        `Un-Mounting for the counter value ${counter} and aborting call for id ${currentRender}`
       );
-      clearInterval(id);
     };
   }, [counter]);
   return (
