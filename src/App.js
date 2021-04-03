@@ -11,7 +11,7 @@ export default function App() {
       console.log(`Mounting for the counter value ${counter}`);
     }, 3000);
     return () => {
-      // Here we are clearing the call for the mounting phase.
+      // Here we are clearing the call for the mounting phase, Run after the mounting is done.
       // Right now we don't have any ID so we are displaying the console log
       console.log(
         `Un-Mounting for the counter value ${counter} and clearing the timeout call for id ${id}`
